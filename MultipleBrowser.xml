@@ -1,0 +1,15 @@
+
+<suite name="Suite1">
+    <test  thread-count="2" name="OnChrome" parallel="tests" >
+        <parameters name="BroName" value="chrome"> </parameters>
+        <classes>
+            <class name="MultipleBrowsers.RunOnMultipleBrowsers"/>
+        </classes>
+    </test>
+    <test  thread-count="2" name="OnFirefox" parallel="tests" >
+        <parameters name="BroName" value="firefox"> </parameters>
+        <classes>
+            <class name="MultipleBrowsers.RunOnMultipleBrowsers"/>
+        </classes>
+    </test>
+</suite>

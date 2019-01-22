@@ -1,0 +1,4 @@
+[INFO ] 2019-01-22 15:58:40.393 [main] LoggerTest - info massage
+[ERROR] 2019-01-22 15:58:40.401 [main] LoggerTest - error message
+[WARN ] 2019-01-22 15:58:40.402 [main] LoggerTest - warn message
+[FATAL] 2019-01-22 15:58:40.402 [main] LoggerTest - fatal message

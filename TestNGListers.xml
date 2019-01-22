@@ -1,0 +1,12 @@
+
+<suite name="Suite">
+    <listernes>
+        <listerner class-name="TestListernersDirectory.TestListerners"></listerner>
+    </listernes>
+    <test thread-count="5" name="Test1">
+        <classes>
+            <class name="TestListernersDirectory.TestNGListerners"/>
+            <class name="TestListernersDirectory.TestNGListerners2"/>
+        </classes>
+    </test>
+</suite>
