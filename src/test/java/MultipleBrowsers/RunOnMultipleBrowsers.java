@@ -10,7 +10,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class RunOnMultipleBrowsers {
-    WebDriver driver=null;
+    private WebDriver driver=null;
     @Parameters("BroName")
     @BeforeTest
     public void setup(String BroName){
@@ -23,6 +23,8 @@ public class RunOnMultipleBrowsers {
             System.setProperty("webdriver.chrome.driver", projectPath + "\\src\\main\\resources\\chromedriver.exe");
             driver = new ChromeDriver(options);
         }
+        else if (BroName.equalsIgnoreCase("firefox")){
+            WebDriver driver=new FirefoxDriver();
             System.setProperty("webdriver.gecko.driver", projectPath + "\\src\\main\\resources\\geckodriver.exe");
 
         }

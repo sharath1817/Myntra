@@ -1,6 +1,6 @@
 
 <suite name="Suite1">
-    <test thread-count="5" name="Test1">
+    <test thread-count="10" name="Test1">
         <classes>
             <class name="Tests.TestNG"/>
         </classes>
