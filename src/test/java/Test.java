@@ -18,17 +18,14 @@ public class Test {
 
        driver.get("https://www.myntra.com/login");
         driver.findElement(By.name("email")).sendKeys("dasarisharath817@gmail.com");
-        driver.findElement(By.name("password")).sendKeys("sharath@123");
-       driver.findElement(By.className("login-login-button")).sendKeys(Keys.RETURN);
+        //driver.findElement(By.name("password")).sendKeys("sharath@123");
+       //driver.findElement(By.className("login-login-button")).sendKeys(Keys.RETURN);
         //driver.get("https://www.myntra.com/register");
        //driver.findElement(By.id("male")).click();
        // driver.findElement(By.className("register-register-button")).sendKeys(Keys.RETURN);
         driver.findElement(By.className("desktop-searchBar")).sendKeys("Shirt");
         driver.findElement(By.className("desktop-searchBar")).sendKeys(Keys.RETURN);
-        List<WebElement> radio=driver.findElements(By.xpath("/html/body/div[2]/div/main/div[3]/div[1]/section/div/div[2]/ul"));
-        for(int i=0;i<radio.size();i++){
-            WebElement local_radio=radio.get(i);
-        }
+        driver.findElement(By.cssSelector("input[type='radio'][value='boys,boys girls'])")).click();
 
 
 
