@@ -6,7 +6,9 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class MyntraPageObjects {
@@ -19,6 +21,7 @@ public class MyntraPageObjects {
     private By MaleGender=By.id("male");
     private By FemaleGender=By.id("female");
     private By ReigsterButtonClick=By.className("register-register-button");
+    private By RadioButtonsForGenderSelection=By.cssSelector(".gender-list .common-customRadio.gender-label");
     public MyntraPageObjects(WebDriver driver){
 
         this.driver=driver;
@@ -55,12 +58,20 @@ public class MyntraPageObjects {
     public void myntraRegisterButtonClick(){
         driver.findElement(ReigsterButtonClick).sendKeys(Keys.RETURN);
     }
+
+    public void myntraProductsGenderSelection(){
+        List<WebElement> genderlist=driver.findElements(RadioButtonsForGenderSelection);
+        WebElement localElement=genderlist.get(0);
+    }
+
     public void HtmlReportGeneration(){
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("extent.html");
         ExtentReports extent= new ExtentReports();
         extent.attachReporter(htmlReporter);
 
     }
+
+
     public void MaximizeTheBrowser(){
         driver.manage().window().maximize();
     }

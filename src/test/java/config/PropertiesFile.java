@@ -19,8 +19,13 @@ public class PropertiesFile {
             InputStream input=new FileInputStream(projectPath+"\\src\\main\\java\\config\\config.properties");
             prop.load(input);
             String browser=prop.getProperty("browser");
+            String Username=prop.getProperty("Username");
+            String Password=prop.getProperty("Password");
             System.out.println("........."+browser+" Browser is Loading..........");
             TestNG.browserName=browser;
+            TestNG.Username=Username;
+            TestNG.Password=Password;
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

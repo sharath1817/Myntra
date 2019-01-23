@@ -25,8 +25,21 @@ public class Test {
        // driver.findElement(By.className("register-register-button")).sendKeys(Keys.RETURN);
         driver.findElement(By.className("desktop-searchBar")).sendKeys("Shirt");
         driver.findElement(By.className("desktop-searchBar")).sendKeys(Keys.RETURN);
-        driver.findElement(By.cssSelector("input[type='radio'][value='boys,boys girls'])")).click();
+        //driver.findElement(By.cssSelector("input[type='radio'][value='boys,boys girls'])")).click();
+        List<WebElement> genderlist=driver.findElements(By.cssSelector(".gender-list .common-customRadio.gender-label"));
+        //for(WebElement gender: genderlist) {
+       // for(int i=0;i<genderlist.size();i++){
+            WebElement localElement=genderlist.get(0);
+            localElement.click();
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //String value=localElement.getAttribute("value");
+           // System.out.println("values from radio button"+value);
 
+        //}
 
 
 

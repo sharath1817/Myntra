@@ -21,9 +21,13 @@ import org.testng.annotations.Test;
 public class TestNG {
     WebElement element=null;
     public static String browserName=null;
+    public static String Username=null;
+    public static String Password=null;
+
     private static WebDriver driver=null;
     private static ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("extent.html");
     private static ExtentReports extent= new ExtentReports();
+
 
     @BeforeTest()
     public void setupDriver(){
@@ -55,9 +59,9 @@ public class TestNG {
         System.out.println("I am inside TesRegister the user");
         MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
         driver.get("https://www.myntra.com/register");
-        searchPageObj.MyntraEnterEmailID("dasarisharath817@gmail.com");
+        searchPageObj.MyntraEnterEmailID(Username);
         searchPageObj.safeTimeOuts();
-        searchPageObj.MyntraEnterPassword("sharath@123");
+        searchPageObj.MyntraEnterPassword(Password);
         searchPageObj.safeTimeOuts();
         searchPageObj.MyntraMobileNumber("9912224869");
         searchPageObj.safeTimeOuts();
@@ -77,9 +81,9 @@ public class TestNG {
         System.out.println("Sign In the User");
         MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
         driver.get("https://www.myntra.com/login");
-        searchPageObj.MyntraEnterEmailID("dasarisharath817@gmail.com");
+        searchPageObj.MyntraEnterEmailID(Username);
         searchPageObj.safeTimeOuts();
-        searchPageObj.MyntraEnterPassword("sharath@123");
+        searchPageObj.MyntraEnterPassword(Password);
         searchPageObj.safeTimeOuts();
         searchPageObj.MytraLoginSubmit();
         searchPageObj.safeTimeOuts();
