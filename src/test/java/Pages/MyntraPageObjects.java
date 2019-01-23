@@ -24,7 +24,7 @@ public class MyntraPageObjects {
         this.driver=driver;
     }
     public void safeTimeOuts(){
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
     public void myntraSearchProduct(String text){
         driver.findElement(product_search).sendKeys(text);
@@ -60,5 +60,8 @@ public class MyntraPageObjects {
         ExtentReports extent= new ExtentReports();
         extent.attachReporter(htmlReporter);
 
+    }
+    public void MaximizeTheBrowser(){
+        driver.manage().window().maximize();
     }
 }

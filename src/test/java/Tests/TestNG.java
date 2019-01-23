@@ -35,56 +35,27 @@ public class TestNG {
             options.addArguments("--disable-notifications");
             System.setProperty("webdriver.chrome.driver", projectPath + "\\src\\main\\resources\\chromedriver.exe");
             driver = new ChromeDriver(options);
+            driver.manage().window().maximize();
         }
         else if (browserName.equalsIgnoreCase("firefox")){
             WebDriver driver=new FirefoxDriver();
-            System.setProperty("webdriver.gecko.driver", projectPath + "\\src\\main\\resources\\geckodriver.exe");
+            System.setProperty("webdriver.firefox.marionette", projectPath + "\\src\\main\\resources\\GeckoDriverNew.exe");
 
         }
         extent.attachReporter(htmlReporter);
         ExtentTest test1= extent.createTest("Selecting the Browser","Chroem Browser");
+        test1.pass("Browser selected Successfully");
         extent.flush();
 
 
     }
-    @Test
-    public static void MyntraSeachTest(){
-        System.out.println("Searching Product");
-        MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
-        driver.get("https://myntra.com");
-        searchPageObj.myntraSearchProduct("Shoes");
-        searchPageObj.clickSearch();
-        extent.attachReporter(htmlReporter);
-        ExtentTest test1= extent.createTest("Searching the Product","Shoes");
-        extent.flush();
-
-
-    }
-    @Test
-    public static void MyntraLogin(){
-        System.out.println("Sign In the User");
-        MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
-        driver.get("https://www.myntra.com/login");
-        searchPageObj.MyntraEnterEmailID("dasarisharath1817@gmail.com");
-        searchPageObj.safeTimeOuts();
-        searchPageObj.MyntraEnterPassword("sharath@123");
-        searchPageObj.safeTimeOuts();
-        searchPageObj.MytraLoginSubmit();
-        searchPageObj.safeTimeOuts();
-        extent.attachReporter(htmlReporter);
-        ExtentTest test1= extent.createTest("Sign In the user","sharath login");
-        extent.flush();
-        throw new SkipException("this tast is skipped");
-
-
-    }
-    @Test
+    @Test(priority = 0)
     public static void MyntraUserRegister(){
         //Assert.assertTrue(false);
         System.out.println("I am inside TesRegister the user");
         MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
         driver.get("https://www.myntra.com/register");
-        searchPageObj.MyntraEnterEmailID("dasarisharath1817@gmail.com");
+        searchPageObj.MyntraEnterEmailID("dasarisharath817@gmail.com");
         searchPageObj.safeTimeOuts();
         searchPageObj.MyntraEnterPassword("sharath@123");
         searchPageObj.safeTimeOuts();
@@ -95,11 +66,46 @@ public class TestNG {
         searchPageObj.myntraRegisterButtonClick();
         extent.attachReporter(htmlReporter);
         ExtentTest test1= extent.createTest("New User Registration","User regiser");
+        test1.pass("Registration Completed Successfully");
         extent.flush();
 
 
 
     }
+    @Test(priority = 1)
+    public static void MyntraLogin(){
+        System.out.println("Sign In the User");
+        MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
+        driver.get("https://www.myntra.com/login");
+        searchPageObj.MyntraEnterEmailID("dasarisharath817@gmail.com");
+        searchPageObj.safeTimeOuts();
+        searchPageObj.MyntraEnterPassword("sharath@123");
+        searchPageObj.safeTimeOuts();
+        searchPageObj.MytraLoginSubmit();
+        searchPageObj.safeTimeOuts();
+        extent.attachReporter(htmlReporter);
+        ExtentTest test1= extent.createTest("Sign In the user","sharath login");
+        test1.pass("User Logged into the account");
+        extent.flush();
+        //throw new SkipException("this tast is skipped");
+
+
+    }
+    @Test(priority = 2)
+    public static void MyntraSeachTest(){
+        System.out.println("Searching Product");
+        MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
+        driver.get("https://myntra.com");
+        searchPageObj.myntraSearchProduct("Shirts");
+        searchPageObj.clickSearch();
+        extent.attachReporter(htmlReporter);
+        ExtentTest test1= extent.createTest("Searching the Product","Shirts");
+        test1.pass("Shirts Product Serached successfully");
+        extent.flush();
+
+
+    }
+
 
     @AfterTest
     public void closeTest(){
@@ -108,6 +114,7 @@ public class TestNG {
         System.out.println("Test completed successfully");
         extent.attachReporter(htmlReporter);
         ExtentTest test1= extent.createTest("Closing the driver","Closing the driver");
+        test1.pass("Browser selected Successfully");
         extent.flush();
     }
 
