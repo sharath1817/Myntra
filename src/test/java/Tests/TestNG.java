@@ -150,7 +150,10 @@ public class TestNG {
             }
         }
         //driver.switchTo().window(parent);
-
+        extent.attachReporter(htmlReporter);
+        ExtentTest test1= extent.createTest("Adding Product to the Cart","Shirt is added to the cart");
+        test1.pass("Adding Product to the cart test is passed successfully");
+        extent.flush();
 
     }
 
@@ -159,6 +162,10 @@ public class TestNG {
         MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
         driver.get("https://www.myntra.com/");
         searchPageObj.ShowCart();
+        extent.attachReporter(htmlReporter);
+        ExtentTest test1= extent.createTest("Showing cart Items","Displaying cart itmes");
+        test1.pass("Displaying cart items test is passed successfully");
+        extent.flush();
 
     }
 
