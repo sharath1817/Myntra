@@ -22,6 +22,10 @@ public class MyntraPageObjects {
     private By FemaleGender=By.id("female");
     private By ReigsterButtonClick=By.className("register-register-button");
     private By RadioButtonsForGenderSelection=By.cssSelector(".gender-list .common-customRadio.gender-label");
+    private  By ProductSizeButton=By.cssSelector(".size-buttons-unified-size");
+    private By AddProductToCart=By.cssSelector(" .pdp-add-to-bag ");
+    private  By SelectedTest=By.cssSelector("img[src*='8861518155061131-1']");
+    private  By ShowCart=By.className("desktop-cart");
     public MyntraPageObjects(WebDriver driver){
 
         this.driver=driver;
@@ -71,8 +75,20 @@ public class MyntraPageObjects {
 
     }
 
+    public void SelectShirt(){
+        driver.findElement(SelectedTest).click();
+    }
 
-    public void MaximizeTheBrowser(){
-        driver.manage().window().maximize();
+    public List<WebElement> ProductSize()
+    {
+        List<WebElement> size=driver.findElements(ProductSizeButton);
+        return size;
+    }
+    public void AddtoCart()
+    {
+        driver.findElement(AddProductToCart).click();
+    }
+    public void ShowCart(){
+        driver.findElement(ShowCart).click();
     }
 }

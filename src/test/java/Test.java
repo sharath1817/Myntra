@@ -6,9 +6,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.List;
+import java.util.Set;
 
 public class Test {
-    public static void main(String args[]){
+    public static void main(String args[]) throws InterruptedException {
         String projectPath = System.getProperty("user.dir");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
@@ -17,7 +18,7 @@ public class Test {
         //driver.get("https://myntra.com");
 
        driver.get("https://www.myntra.com/login");
-        driver.findElement(By.name("email")).sendKeys("dasarisharath817@gmail.com");
+        //driver.findElement(By.name("email")).sendKeys("dasarisharath817@gmail.com");
         //driver.findElement(By.name("password")).sendKeys("sharath@123");
        //driver.findElement(By.className("login-login-button")).sendKeys(Keys.RETURN);
         //driver.get("https://www.myntra.com/register");
@@ -37,9 +38,33 @@ public class Test {
                 e.printStackTrace();
             }
             //String value=localElement.getAttribute("value");
-           // System.out.println("values from radio button"+value);
+           // System.out.println("vacmlues from radio button"+value);
 
         //}
+        driver.findElement(By.cssSelector("img[src*='8861518155061131-1']")).click();
+        String parent=driver.getWindowHandle();
+        Set<String> allWindows=driver.getWindowHandles();
+        int count=allWindows.size();
+        String actualTitle;
+        for(String child:allWindows){
+            if(!parent.equalsIgnoreCase(child)){
+                driver.switchTo().window(child);
+                actualTitle = driver.getTitle();
+                System.out.println("ActualTitle is +"+actualTitle);
+                List<WebElement> size=driver.findElements(By.cssSelector(".size-buttons-unified-size"));
+                for(WebElement size1: size) {
+                    if(size1.getText().contains("38")) {
+                        size1.click();
+                        break;
+                    }
+                }
+                driver.findElement(By.cssSelector(" .pdp-add-to-bag ")).click();
+                Thread.sleep(3000);
+
+            }
+        }
+        driver.findElement(By.className("desktop-cart")).click();
+        //driver.switchTo().window(parent);
 
 
 

@@ -6,8 +6,8 @@ import java.io.*;
 import java.util.Properties;
 
 public class PropertiesFile {
-    static Properties prop=new Properties();
-    static String projectPath= System.getProperty("user.dir");
+    private static Properties prop=new Properties();
+    private static String projectPath= System.getProperty("user.dir");
     public static void main(String args[]){
     getProperties();
     //setProperties();
@@ -21,10 +21,13 @@ public class PropertiesFile {
             String browser=prop.getProperty("browser");
             String Username=prop.getProperty("Username");
             String Password=prop.getProperty("Password");
+            String MobileNumber=prop.getProperty("MobileNumber");
+
             System.out.println("........."+browser+" Browser is Loading..........");
             TestNG.browserName=browser;
             TestNG.Username=Username;
             TestNG.Password=Password;
+            TestNG.MobileNumber=MobileNumber;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

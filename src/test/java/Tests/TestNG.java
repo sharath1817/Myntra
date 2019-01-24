@@ -5,6 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import config.PropertiesFile;
 import Pages.MyntraPageObjects;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,12 +18,17 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.util.List;
+import java.util.Set;
+
 @Listeners(TestListernersDirectory.TestListerners.class)
 public class TestNG {
     WebElement element=null;
     public static String browserName=null;
     public static String Username=null;
     public static String Password=null;
+    public static String MobileNumber=null;
+
 
     private static WebDriver driver=null;
     private static ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("extent.html");
@@ -53,7 +59,7 @@ public class TestNG {
 
 
     }
-    @Test(priority = 0)
+    @Test
     public static void MyntraUserRegister(){
         //Assert.assertTrue(false);
         System.out.println("I am inside TesRegister the user");
@@ -63,7 +69,7 @@ public class TestNG {
         searchPageObj.safeTimeOuts();
         searchPageObj.MyntraEnterPassword(Password);
         searchPageObj.safeTimeOuts();
-        searchPageObj.MyntraMobileNumber("9912224869");
+        searchPageObj.MyntraMobileNumber(MobileNumber);
         searchPageObj.safeTimeOuts();
         searchPageObj.MyntraMaleGenderSelect();
         searchPageObj.safeTimeOuts();
@@ -100,7 +106,7 @@ public class TestNG {
         System.out.println("Searching Product");
         MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
         driver.get("https://myntra.com");
-        searchPageObj.myntraSearchProduct("Shirts");
+        searchPageObj.myntraSearchProduct("Watches");
         searchPageObj.clickSearch();
         extent.attachReporter(htmlReporter);
         ExtentTest test1= extent.createTest("Searching the Product","Shirts");
@@ -109,6 +115,53 @@ public class TestNG {
 
 
     }
+    @Test(priority = 3)
+    public void AddProductToTheCart() throws InterruptedException {
+
+        MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
+        System.out.println("Searching Product");
+        driver.get("https://myntra.com");
+        searchPageObj.myntraSearchProduct("Shirts");
+        searchPageObj.clickSearch();
+        searchPageObj.safeTimeOuts();
+      searchPageObj.SelectShirt();
+        searchPageObj.safeTimeOuts();
+        System.out.println("passing through");
+        //driver.findElement(By.cssSelector("img[src*='8861518155061131-1']")).click();
+        Set<String> allWindows=driver.getWindowHandles();
+        int count=allWindows.size();
+        String parent=driver.getWindowHandle();
+        String actualTitle;
+        for(String child:allWindows){
+            if(!parent.equalsIgnoreCase(child)){
+                driver.switchTo().window(child);
+                actualTitle = driver.getTitle();
+                System.out.println("ActualTitle is +"+actualTitle);
+                List<WebElement> size=driver.findElements(By.cssSelector(".size-buttons-unified-size"));
+                for(WebElement size1: size) {
+                    if(size1.getText().contains("38")) {
+                        size1.click();
+                        break;
+                    }
+                }
+                driver.findElement(By.cssSelector(" .pdp-add-to-bag ")).click();
+                Thread.sleep(3000);
+
+            }
+        }
+        //driver.switchTo().window(parent);
+
+
+    }
+
+    @Test(priority = 4)
+    public void ShowCartItems(){
+        MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
+        driver.get("https://www.myntra.com/");
+        searchPageObj.ShowCart();
+
+    }
+
 
 
     @AfterTest
