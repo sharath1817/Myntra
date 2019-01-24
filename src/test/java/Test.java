@@ -65,6 +65,13 @@ public class Test {
         }
         driver.findElement(By.className("desktop-cart")).click();
         //driver.switchTo().window(parent);
+        List<WebElement> size=driver.findElements(By.cssSelector(".desktop-accInfoSection"));
+        for(WebElement size1: size) {
+            if(size1.getText().contains(" Logout ")) {
+                size1.click();
+                break;
+            }
+        }
 
 
 

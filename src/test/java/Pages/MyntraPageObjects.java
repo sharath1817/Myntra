@@ -26,6 +26,7 @@ public class MyntraPageObjects {
     private By AddProductToCart=By.cssSelector(" .pdp-add-to-bag ");
     private  By SelectedTest=By.cssSelector("img[src*='8861518155061131-1']");
     private  By ShowCart=By.className("desktop-cart");
+    private By  CartAddButton=By.cssSelector(" .pdp-add-to-bag ");
     public MyntraPageObjects(WebDriver driver){
 
         this.driver=driver;
@@ -90,5 +91,8 @@ public class MyntraPageObjects {
     }
     public void ShowCart(){
         driver.findElement(ShowCart).click();
+    }
+    public  void AddCartButtonClick(){
+        driver.findElement(CartAddButton).click();
     }
 }
