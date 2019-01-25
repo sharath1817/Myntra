@@ -22,12 +22,14 @@ public class PropertiesFile {
             String Username=prop.getProperty("Username");
             String Password=prop.getProperty("Password");
             String MobileNumber=prop.getProperty("MobileNumber");
+            String Base_URL=prop.getProperty("Base_URL");
 
             System.out.println("........."+browser+" Browser is Loading..........");
             TestNG.browserName=browser;
             TestNG.Username=Username;
             TestNG.Password=Password;
             TestNG.MobileNumber=MobileNumber;
+            TestNG.Base_URL=Base_URL;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

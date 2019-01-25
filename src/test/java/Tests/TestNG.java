@@ -1,5 +1,4 @@
 package Tests;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -17,6 +16,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import test.tmp.Base;
 
 import java.util.List;
 import java.util.Set;
@@ -28,6 +28,7 @@ public class TestNG {
     public static String Username=null;
     public static String Password=null;
     public static String MobileNumber=null;
+    public static String Base_URL=null;
 
 
     private static WebDriver driver=null;
@@ -37,9 +38,9 @@ public class TestNG {
 
     @BeforeTest()
     public void setupDriver(){
-        extent.attachReporter(htmlReporter);
-        ExtentTest test1= extent.createTest("Selecting the Browser","Chroem Browser");
         System.out.println("Setting Up the driver");
+        extent.attachReporter(htmlReporter);
+        ExtentTest test1= extent.createTest("Selecting the Browser","Chrome Browser");
         String projectPath = System.getProperty("user.dir");
         PropertiesFile.getProperties();
         if(browserName.equalsIgnoreCase("chrome")){
@@ -58,7 +59,6 @@ public class TestNG {
         }
 
         test1.pass("Browser selected Successfully");
-        extent.flush();
 
 
     }
@@ -69,7 +69,7 @@ public class TestNG {
         ExtentTest test1= extent.createTest("New User Registration","User regiser");
         System.out.println("I am inside TesRegister the user");
         MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
-        driver.get("https://www.myntra.com/register");
+        driver.get(Base_URL+"/register");
         test1.pass("Navigated to the Registration Page successfully");
         searchPageObj.MyntraEnterEmailID(Username);
         searchPageObj.safeTimeOuts();
@@ -85,9 +85,8 @@ public class TestNG {
         test1.pass("Gender Selected Successfully");
         searchPageObj.myntraRegisterButtonClick();
         test1.pass("Registration Button clicked successfully");
-
         test1.pass("Registration Completed Successfully");
-        extent.flush();
+
 
 
 
@@ -98,7 +97,7 @@ public class TestNG {
         ExtentTest test1= extent.createTest("Sign In the user","sharath login");
         System.out.println("Sign In the User");
         MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
-        driver.get("https://www.myntra.com/login");
+        driver.get(Base_URL+"/login");
         test1.pass("Navigated to Myntra Login Page successfully");
         searchPageObj.MyntraEnterEmailID(Username);
         test1.pass("Username Entered Successfully");
@@ -111,7 +110,6 @@ public class TestNG {
         searchPageObj.safeTimeOuts();
 
         test1.pass("User Logged into the account");
-        extent.flush();
         //throw new SkipException("this tast is skipped");
 
 
@@ -122,13 +120,13 @@ public class TestNG {
         ExtentTest test1= extent.createTest("Searching the Product","Watches");
         System.out.println("Searching Product");
         MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
-        driver.get("https://myntra.com");
+        driver.get(Base_URL);
         test1.pass("Navigated to Myntra Website");
         searchPageObj.myntraSearchProduct("Watches");
         test1.pass("Entered 'Watches' in search Box successfully");
         searchPageObj.clickSearch();
         test1.pass("Shirts Product Serached successfully");
-        extent.flush();
+
 
 
     }
@@ -138,7 +136,7 @@ public class TestNG {
         ExtentTest test1= extent.createTest("Adding Product to the Cart","Shirt is added to the cart");
         MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
         System.out.println("Searching Product");
-        driver.get("https://myntra.com");
+        driver.get(Base_URL);
         test1.pass("Navigated to Myntra Website sucessfully");
         searchPageObj.myntraSearchProduct("Shirts");
         test1.pass("Shirts Product searched");
@@ -162,7 +160,7 @@ public class TestNG {
                 test1.pass("New Window title is printed on console");
                 List<WebElement> size=driver.findElements(By.cssSelector(".size-buttons-unified-size"));
                 for(WebElement size1: size) {
-                    if(size1.getText().contains("38")) {
+                    if(size1.getText().contains("42")) {
                         size1.click();
                         break;
                     }
@@ -175,19 +173,18 @@ public class TestNG {
             }
         }
         //driver.switchTo().window(parent);
-        extent.flush();
 
     }
 
     @Test(priority = 4)
     public void ShowCartItems(){
         MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
-        driver.get("https://www.myntra.com/");
+        driver.get(Base_URL);
         searchPageObj.ShowCart();
         extent.attachReporter(htmlReporter);
         ExtentTest test1= extent.createTest("Showing cart Items","Displaying cart itmes");
         test1.pass("Displaying cart items test is passed successfully");
-        extent.flush();
+
 
     }
 
@@ -201,5 +198,6 @@ public class TestNG {
         test1.pass("Browser selected Successfully");
         extent.flush();
     }
+
 
 }
