@@ -1,7 +1,6 @@
 package Pages;
 
 import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -24,7 +23,7 @@ public class MyntraPageObjects {
     private By RadioButtonsForGenderSelection=By.cssSelector(".gender-list .common-customRadio.gender-label");
     private  By ProductSizeButton=By.cssSelector(".size-buttons-unified-size");
     private By AddProductToCart=By.cssSelector(" .pdp-add-to-bag ");
-    private  By SelectedTest=By.cssSelector("img[src*='8861518155061131-1']");
+    private  By SelectedShirt=By.cssSelector("img[src*='8861518155061131-1']");
     private  By ShowCart=By.className("desktop-cart");
     private By  CartAddButton=By.cssSelector(" .pdp-add-to-bag ");
     public MyntraPageObjects(WebDriver driver){
@@ -77,10 +76,10 @@ public class MyntraPageObjects {
     }
 
     public void SelectShirt(){
-        driver.findElement(SelectedTest).click();
+        driver.findElement(SelectedShirt).click();
     }
 
-    public List<WebElement> ProductSize()
+    public List<WebElement> ShirtSize()
     {
         List<WebElement> size=driver.findElements(ProductSizeButton);
         return size;

@@ -23,6 +23,7 @@ public class PropertiesFile {
             String Password=prop.getProperty("Password");
             String MobileNumber=prop.getProperty("MobileNumber");
             String Base_URL=prop.getProperty("Base_URL");
+            String Shirt_Size=prop.getProperty("Shirt_Size");
 
             System.out.println("........."+browser+" Browser is Loading..........");
             TestNG.browserName=browser;
@@ -30,6 +31,7 @@ public class PropertiesFile {
             TestNG.Password=Password;
             TestNG.MobileNumber=MobileNumber;
             TestNG.Base_URL=Base_URL;
+            TestNG.Shirt_Size=Shirt_Size;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

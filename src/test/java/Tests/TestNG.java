@@ -29,6 +29,7 @@ public class TestNG {
     public static String Password=null;
     public static String MobileNumber=null;
     public static String Base_URL=null;
+    public static String Shirt_Size=null;
 
 
     private static WebDriver driver=null;
@@ -117,23 +118,21 @@ public class TestNG {
     @Test(priority = 2)
     public static void MyntraSeachTest(){
         extent.attachReporter(htmlReporter);
-        ExtentTest test1= extent.createTest("Searching the Product","Watches");
-        System.out.println("Searching Product");
+        ExtentTest test1= extent.createTest("Searching the Watches","Watches");
+        System.out.println("Searching Watches");
         MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
         driver.get(Base_URL);
         test1.pass("Navigated to Myntra Website");
         searchPageObj.myntraSearchProduct("Watches");
         test1.pass("Entered 'Watches' in search Box successfully");
         searchPageObj.clickSearch();
-        test1.pass("Shirts Product Serached successfully");
-
-
+        test1.pass("Watches Serached successfully");
 
     }
     @Test(priority = 3)
     public void AddProductToTheCart() throws InterruptedException {
         extent.attachReporter(htmlReporter);
-        ExtentTest test1= extent.createTest("Adding Product to the Cart","Shirt is added to the cart");
+        ExtentTest test1= extent.createTest("Adding Shirt to the Cart","Shirt is added to the cart");
         MyntraPageObjects searchPageObj=new MyntraPageObjects(driver);
         System.out.println("Searching Product");
         driver.get(Base_URL);
@@ -160,12 +159,12 @@ public class TestNG {
                 test1.pass("New Window title is printed on console");
                 List<WebElement> size=driver.findElements(By.cssSelector(".size-buttons-unified-size"));
                 for(WebElement size1: size) {
-                    if(size1.getText().contains("42")) {
+                    if(size1.getText().contains(Shirt_Size)) {
                         size1.click();
                         break;
                     }
                 }
-                test1.pass("Selected Shirt size as 38 ");
+                test1.pass("Selected Shirt size as "+Shirt_Size);
                 searchPageObj.AddCartButtonClick();
                 test1.pass("Shirt is added to the cart successfully");
                 Thread.sleep(3000);
@@ -195,7 +194,7 @@ public class TestNG {
         System.out.println("Test completed successfully");
         extent.attachReporter(htmlReporter);
         ExtentTest test1= extent.createTest("Closing the driver","Closing the driver");
-        test1.pass("Browser selected Successfully");
+        test1.pass("Browser Closed Successfully");
         extent.flush();
     }
 
